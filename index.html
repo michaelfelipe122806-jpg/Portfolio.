@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>John Michael P. Felipe - Portfolio</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #1a2e4a;
+    --navy-light: #243c5e;
+    --accent: #3fa7d6;
+    --accent2: #2dd4bf;
+    --white: #ffffff;
+    --text: #1f3a5f;
+    --muted: #5a7a9a;
+    --surface: #f4f8fc;
+    --border: #d0e4f0;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--surface);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .portfolio-wrap {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  /* ===== HERO HEADER ===== */
+  .hero {
+    background: linear-gradient(135deg, #1a2e4a 0%, #243c5e 60%, #1d5a7a 100%);
+    padding: 48px 36px 36px;
+    border-radius: 0 0 24px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: rgba(63,167,214,0.08);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -40px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(45,212,191,0.06);
+  }
+  .hero-inner {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    position: relative;
+    z-index: 1;
+  }
+  .avatar-wrap {
+    flex-shrink: 0;
+    width: 110px; height: 110px;
+    border-radius: 50%;
+    border: 3px solid var(--accent);
+    overflow: hidden;
+    box-shadow: 0 0 0 6px rgba(63,167,214,0.15), 0 8px 24px rgba(0,0,0,0.3);
+  }
+  .avatar-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .hero h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.3px;
+  }
+  .hero .role {
+    font-size: 14px;
+    color: var(--accent2);
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+  }
+  .hero-badges {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+  }
+  .badge {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: rgba(63,167,214,0.15);
+    color: var(--accent);
+    border: 0.5px solid rgba(63,167,214,0.3);
+    letter-spacing: 0.3px;
+  }
+
+  /* ===== NAVIGATION ===== */
+  .nav-bar {
+    display: flex;
+    gap: 6px;
+    padding: 14px 20px;
+    background: #fff;
+    border-bottom: 0.5px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    overflow-x: auto;
+    scrollbar-width: none;
+    box-shadow: 0 2px 12px rgba(26,46,74,0.06);
+  }
+  .nav-bar::-webkit-scrollbar { display: none; }
+  .nav-btn {
+    padding: 7px 18px;
+    border-radius: 8px;
+    border: 0.5px solid var(--border);
+    background: var(--surface);
+    color: var(--muted);
+    font-size: 13px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: 500;
+  }
+  .nav-btn:hover {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+  .nav-btn.active {
+    background: var(--navy);
+    color: #fff;
+    border-color: var(--navy);
+  }
+
+  /* ===== SECTION CARDS ===== */
+  .sections {
+    padding: 28px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 16px;
+    border: 0.5px solid var(--border);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(26,46,74,0.1);
+  }
+
+  .card-header {
+    padding: 18px 24px 14px;
+    border-bottom: 0.5px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .card-icon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    flex-shrink: 0;
+  }
+  .icon-blue   { background: #e6f1fb; }
+  .icon-teal   { background: #e1f5ee; }
+  .icon-amber  { background: #faeeda; }
+  .icon-purple { background: #eeedfe; }
+
+  .card-header h2 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: 0.2px;
+  }
+  .card-body { padding: 20px 24px; }
+
+  /* ===== ABOUT ===== */
+  .about-text {
+    font-size: 15px;
+    line-height: 1.75;
+    color: #3a5a7a;
+  }
+  .about-highlight {
+    margin-top: 14px;
+    padding: 12px 16px;
+    background: #e6f1fb;
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    font-size: 14px;
+    color: #185fa5;
+    line-height: 1.6;
+  }
+
+  /* ===== PERSONAL DETAILS ===== */
+  .details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .detail-item {
+    padding: 12px 16px;
+    border-radius: 10px;
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+  }
+  .detail-label {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin-bottom: 4px;
+  }
+  .detail-value {
+    font-size: 14px;
+    color: var(--navy);
+    font-weight: 500;
+  }
+
+  /* ===== SKILLS ===== */
+  .skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .skill-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    transition: all 0.2s;
+    cursor: default;
+  }
+  .skill-chip:hover {
+    border-color: var(--accent);
+    background: #e6f1fb;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(63,167,214,0.15);
+  }
+  .skill-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--navy);
+  }
+  .skill-level {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    background: rgba(63,167,214,0.12);
+    color: var(--accent);
+    border: 0.5px solid rgba(63,167,214,0.25);
+  }
+  .skill-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent2);
+  }
+
+  /* ===== INSPIRATION ===== */
+  .inspiration-text {
+    font-size: 15px;
+    line-height: 1.75;
+    color: #3a5a7a;
+  }
+  .inspiration-points {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .insp-item {
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: #e1f5ee;
+    border: 0.5px solid #9fe1cb;
+  }
+  .insp-item p {
+    font-size: 13px;
+    color: #085041;
+    line-height: 1.5;
+  }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+    color: var(--muted);
+    border-top: 0.5px solid var(--border);
+    background: #fff;
+    border-radius: 12px 12px 0 0;
+    margin-top: 8px;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 600px) {
+    .hero { padding: 32px 20px 24px; }
+    .hero h1 { font-size: 22px; }
+    .hero-inner { gap: 16px; }
+    .avatar-wrap { width: 80px; height: 80px; }
+    .details-grid { grid-template-columns: 1fr; }
+    .inspiration-points { grid-template-columns: 1fr; }
+    .sections { padding: 20px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="portfolio-wrap">
+
+  <!-- HERO HEADER -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="avatar-wrap">
+        <img src="p1.jpg" alt="John Michael P. Felipe">
+      </div>
+      <div>
+        <h1>John Michael P. Felipe</h1>
+        <div class="role">Aspiring Web Developer</div>
+        <div class="hero-badges">
+          <span class="badge">BSIT Student</span>
+          <span class="badge">Nueva Ecija</span>
+          <span class="badge">Open to Opportunities</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STICKY NAVIGATION -->
+  <div class="nav-bar">
+    <button class="nav-btn active" onclick="navTo('about', this)">About Me</button>
+    <button class="nav-btn" onclick="navTo('details', this)">Personal Details</button>
+    <button class="nav-btn" onclick="navTo('skills', this)">Skills</button>
+    <button class="nav-btn" onclick="navTo('inspiration', this)">Why I Chose IT</button>
+  </div>
+
+  <div class="sections">
+
+    <!-- ABOUT ME -->
+    <div class="card" id="about">
+      <div class="card-header">
+        <div class="card-icon icon-blue">👤</div>
+        <h2>About Me</h2>
+      </div>
+      <div class="card-body">
+        <p class="about-text">
+          I am currently taking a Bachelor of Science in Information Technology at Our Lady of the Sacred Heart College Guimba.
+          I have a strong interest in technology, especially in web development. I enjoy exploring new tools and ideas, and I am
+          continuously working to improve my skills in creating modern and useful systems.
+        </p>
+        <div class="about-highlight">
+          Currently a student at OLSHCO, Guimba — focused on building practical, real-world digital solutions.
+        </div>
+      </div>
+    </div>
+
+    <!-- PERSONAL DETAILS -->
+    <div class="card" id="details">
+      <div class="card-header">
+        <div class="card-icon icon-amber">📋</div>
+        <h2>Personal Details</h2>
+      </div>
+      <div class="card-body">
+        <div class="details-grid">
+          <div class="detail-item">
+            <div class="detail-label">Full Name</div>
+            <div class="detail-value">John Michael P. Felipe</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Age</div>
+            <div class="detail-value">19 years old</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Email</div>
+            <div class="detail-value" style="font-size:13px;">michaelfelipe122806@gmail.com</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Address</div>
+            <div class="detail-value">San Roque, Guimba, Nueva Ecija</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SKILLS -->
+    <div class="card" id="skills">
+      <div class="card-header">
+        <div class="card-icon icon-teal">💻</div>
+        <h2>Skills &amp; Programming Languages</h2>
+      </div>
+      <div class="card-body">
+        <div class="skills-grid">
+          <div class="skill-chip">
+            <div class="skill-dot"></div>
+            <span class="skill-name">HTML</span>
+            <span class="skill-level">Beginner</span>
+          </div>
+          <div class="skill-chip">
+            <div class="skill-dot"></div>
+            <span class="skill-name">CSS</span>
+            <span class="skill-level">Beginner</span>
+          </div>
+          <div class="skill-chip">
+            <div class="skill-dot"></div>
+            <span class="skill-name">Java</span>
+            <span class="skill-level">Beginner</span>
+          </div>
+          <div class="skill-chip">
+            <div class="skill-dot"></div>
+            <span class="skill-name">Python</span>
+            <span class="skill-level">Beginner</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHY I CHOSE IT -->
+    <div class="card" id="inspiration">
+      <div class="card-header">
+        <div class="card-icon icon-purple">🌐</div>
+        <h2>Why I Chose the IT Field</h2>
+      </div>
+      <div class="card-body">
+        <p class="inspiration-text">
+          I chose the IT field because technology continues to evolve and create new opportunities. I am inspired to learn
+          web development because it allows me to build systems that can help people in their daily lives. I see IT as a field
+          where I can continuously grow, improve my skills, and contribute to creating useful and meaningful technology.
+        </p>
+        <div class="inspiration-points">
+          <div class="insp-item"><p>Technology creates new and expanding career opportunities every year.</p></div>
+          <div class="insp-item"><p>Web development lets me build tools that directly impact people's lives.</p></div>
+          <div class="insp-item"><p>IT is a field where continuous growth and skill-building are always possible.</p></div>
+          <div class="insp-item"><p>I want to create meaningful, useful, and lasting technology solutions.</p></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    John Michael P. Felipe &middot; Portfolio &middot; BSIT &middot; OLSHCO Guimba
+  </div>
+
+</div>
+
+<script>
+  function navTo(id, btn) {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        const map = { about: 0, details: 1, skills: 2, inspiration: 3 };
+        const btns = document.querySelectorAll('.nav-btn');
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+        if (btns[map[id]]) btns[map[id]].classList.add('active');
+      }
+    });
+  }, { threshold: 0.4 });
+
+  ['about', 'details', 'skills', 'inspiration'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
